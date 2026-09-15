@@ -1,0 +1,29 @@
+{
+  "name": "opencode-auto-allow",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "OpenCode TUI plugin: /allow toggles the built-in auto-approve permissions mode, with a persistent allow indicator in the home footer.",
+  "license": "MIT",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "opencode-tui-plugin",
+    "permissions",
+    "auto-approve"
+  ],
+  "exports": {
+    "./tui": "./tui.tsx"
+  },
+  "dependencies": {
+    "@opentui/core": "0.4.5",
+    "@opentui/solid": "0.4.5",
+    "solid-js": "1.9.12"
+  },
+  "files": [
+    "tui.tsx",
+    "README.md"
+  ],
+  "engines": {
+    "opencode": ">=1.18.0"
+  }
+}
