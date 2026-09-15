@@ -193,7 +193,7 @@ const tui: TuiPlugin = async (api) => {
 }
 
 const plugin: TuiPluginModule & { id: string } = {
-  id: "opencode-auto-allow",
+  id: "@leogimp/opencode-auto-allow",
   tui,
 }
 
