@@ -76,10 +76,17 @@ function Version(props: { api: TuiPluginApi }) {
   )
 }
 
+function Indicator(props: { api: TuiPluginApi; enabled: () => boolean }) {
+  const theme = () => props.api.theme.current
+  const color = () => (props.enabled() ? theme().text : withAlpha(theme().text, 0.5))
+
+  return <text fg={color()}>allow</text>
+}
+
 function Footer(props: { api: TuiPluginApi; enabled: () => boolean }) {
   const theme = () => props.api.theme.current
   const indicator = () =>
-    props.enabled() ? theme().success : withAlpha(theme().success, 0.5)
+    props.enabled() ? theme().text : withAlpha(theme().text, 0.5)
 
   return (
     <box
@@ -101,14 +108,43 @@ function Footer(props: { api: TuiPluginApi; enabled: () => boolean }) {
   )
 }
 
+function requestList(result: unknown): Array<{ id: string }> {
+  if (Array.isArray(result)) return result
+  if (Array.isArray((result as { data?: unknown })?.data)) return (result as { data: Array<{ id: string }> }).data
+  if (Array.isArray((result as { response?: unknown })?.response))
+    return (result as { response: Array<{ id: string }> }).response
+  return []
+}
+
+async function replyOnce(api: TuiPluginApi, request: { id: string }) {
+  try {
+    await api.client.permission.reply({
+      requestID: request.id,
+      directory: api.state.path.directory,
+      reply: "once",
+    })
+  } catch {
+    // Requests can disappear if OpenCode handles them before this reply lands.
+  }
+}
+
+async function approvePending(api: TuiPluginApi) {
+  try {
+    const result = await api.client.permission.list({ directory: api.state.path.directory })
+    for (const request of requestList(result)) void replyOnce(api, request)
+  } catch {
+    // The permission service may not be reachable yet; new requests are handled by the event hook.
+  }
+}
+
 const tui: TuiPlugin = async (api) => {
-  const enabled = createSignal(await kvValue(api, KV_KEY, false))
+  const [enabled, setEnabled] = createSignal(await kvValue(api, KV_KEY, false))
 
   const toggle = () => {
     const next = !enabled()
-    enabled[1](next)
+    setEnabled(next)
     api.kv.set(KV_KEY, next)
-    api.keymap.dispatchCommand("permission.mode")
+    if (next) void approvePending(api)
     api.ui.toast({
       variant: next ? "success" : "info",
       title: "allow",
@@ -134,11 +170,23 @@ const tui: TuiPlugin = async (api) => {
     ],
   })
 
+  api.lifecycle.onDispose(
+    api.event.on("permission.asked", (event) => {
+      if (!enabled()) return
+      void replyOnce(api, event.properties)
+    }),
+  )
+
+  if (enabled()) void approvePending(api)
+
   api.slots.register({
     order: SLOT_ORDER,
     slots: {
       home_footer() {
-        return <Footer api={api} enabled={enabled[0]} />
+        return <Footer api={api} enabled={enabled} />
+      },
+      session_prompt_right() {
+        return <Indicator api={api} enabled={enabled} />
       },
     },
   })
