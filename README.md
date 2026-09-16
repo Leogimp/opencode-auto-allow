@@ -22,8 +22,6 @@ A `/allow` toggle that auto-approves permission prompts in the [opencode](https:
 
 </div>
 
-![auto-allow](assets/auto-allow.png)
-
 ## Install
 
 ```sh
@@ -46,8 +44,6 @@ command palette (`ctrl+p` → *Allow: toggle auto-approve permissions*):
 - Enabling mid-session also approves any prompt that is currently pending
 - Shows a toast confirming the new state
 
-![/allow toggle](assets/allow-toggle.png)
-
 ### Indicators
 
 The current state is always visible as a persistent `allow` indicator - **full opacity** when
@@ -59,7 +55,13 @@ auto-approve is on, **50% opacity** when off:
 - **Session prompt meta row**, under the input line, left of the token/usage info - hidden on
   the start screen, where only the footer indicator shows
 
-![indicators](assets/indicator.png)
+**On** - full-opacity indicator next to the usage bar:
+
+![allow on](assets/indicator-on.png)
+
+**Off** - dimmed 50%:
+
+![allow off](assets/indicator-off.png)
 
 ### Auto-approval mechanism
 
