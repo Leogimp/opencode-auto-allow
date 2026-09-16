@@ -2,6 +2,26 @@
 
 A `/allow` toggle that auto-approves permission prompts in the [opencode](https://opencode.ai) TUI, with a persistent indicator next to the prompt. Uses OpenCode's own permission-reply API, so explicit `deny` rules are always enforced.
 
+<div align="center">
+
+<img src="https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+<img src="https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript" />
+<img src="https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+<img src="https://img.shields.io/badge/SolidJS-000000?style=for-the-badge&logo=solid&logoColor=white" alt="SolidJS" />
+<img src="https://img.shields.io/badge/OpenTUI-000000?style=for-the-badge&logo=opencode&logoColor=white" alt="OpenTUI" />
+
+<br />
+
+<img src="https://img.shields.io/npm/v/@leo.gimp/opencode-auto-allow?style=for-the-badge&label=Version&logo=npm&logoColor=white&color=000000" alt="Version" />
+<img src="https://img.shields.io/badge/opencode-1.18%2B-000000?style=for-the-badge&logo=opencode&logoColor=white" alt="opencode 1.18+" />
+<img src="https://img.shields.io/badge/License-MIT-000000?style=for-the-badge&logo=open-source-initiative&logoColor=white" alt="MIT License" />
+
+<br />
+
+<a href="https://www.buymeacoffee.com/leogimpel"><img src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-000000?style=for-the-badge&logo=buymeacoffee&logoColor=white" alt="Buy Me A Coffee" /></a>
+
+</div>
+
 ![auto-allow](assets/auto-allow.png)
 
 ## Install
