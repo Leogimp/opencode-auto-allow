@@ -1,5 +1,5 @@
 {
-  "name": "@leogimp/opencode-auto-allow",
+  "name": "@leo.gimp/opencode-auto-allow",
   "version": "0.1.0",
   "type": "module",
   "description": "OpenCode TUI plugin: /allow toggles the built-in auto-approve permissions mode, with a persistent allow indicator in the home footer.",

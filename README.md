@@ -65,10 +65,10 @@ The plugin needs `ask` permission rules in opencode's config to gate on (see
 ### npm (recommended)
 
 ```sh
-opencode plugin install @leogimp/opencode-auto-allow -g
+opencode plugin install @leo.gimp/opencode-auto-allow -g
 ```
 
-or inside the TUI: `ctrl+p` → *Plugins* → `shift+i` → enter `@leogimp/opencode-auto-allow`.
+or inside the TUI: `ctrl+p` → *Plugins* → `shift+i` → enter `@leo.gimp/opencode-auto-allow`.
 
 Then quit and restart opencode - TUI config is only read at startup.
 

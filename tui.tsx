@@ -193,7 +193,7 @@ const tui: TuiPlugin = async (api) => {
 }
 
 const plugin: TuiPluginModule & { id: string } = {
-  id: "@leogimp/opencode-auto-allow",
+  id: "@leo.gimp/opencode-auto-allow",
   tui,
 }
 
